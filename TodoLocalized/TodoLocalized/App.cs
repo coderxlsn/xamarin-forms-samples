@@ -11,13 +11,11 @@ namespace TodoLocalized
 
 		public App ()
 		{
-			L10n.SetLocale ();
-
-			var netLanguage = DependencyService.Get<ILocale>().GetCurrent();
-			AppResources.Culture = new CultureInfo (netLanguage);
-
+			var ci = DependencyService.Get<ILocale>().GetCurrentCultureInfo();
+			L10n.SetLocale (ci);
+			AppResources.Culture = ci;
+            
 			var mainNav = new NavigationPage (new TodoListPage ());
-
 			MainPage = mainNav;
 		}
 
